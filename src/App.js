@@ -16,22 +16,25 @@ class App extends Component {
     });
   }
 
+
+  removeCharHandler = (event, index) => {
+    let inputArray = this.state.inputText.split('');
+
+    inputArray.splice(index, 1);
+
+    this.setState({
+      inputText: inputArray.join('')
+    });
+  }
+
+
   render() {
-    const inputStyle = {
-      border: "1px solid #ccc",
-      padding: "12px",
-      boxShadow: "1px 1px 3px 0px rgba(0,0,0,0.15)",
-      margin: "17px"
-    };
-
-
     return (
       <div className = "App">
         <input
           type = "text"
           onChange = { this.changeTextHandler }
           value = { this.state.inputText }
-          style = { inputStyle }
         />
 
         <ValidationComponent length = { this.state.inputText.length } />
@@ -39,7 +42,7 @@ class App extends Component {
         <div className = "CharContainer">
           {
             this.state.inputText.split('').map((char, index) => {
-              return <CharComponent char = { char } key = { index }/>
+              return <CharComponent char = { char } key = { index } click = { (event) => this.removeCharHandler(event, index) }/>
             })
           }
         </div>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 function validationComponent(props) {
@@ -13,7 +13,7 @@ function validationComponent(props) {
   };
 
   return (
-    <div style = { charStyle }>
+    <div style = { charStyle } onClick = { props.click }>
       { '"' + props.char + '"' }
     </div>
   );
