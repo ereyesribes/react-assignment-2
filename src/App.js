@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import ValidationComponent from './ValidationComponent/ValidationComponent';
+import CharComponent from './CharComponent/CharComponent';
 
 
 class App extends Component {
@@ -26,14 +27,22 @@ class App extends Component {
 
     return (
       <div className = "App">
-      <input
-        type = "text"
-        onChange = { this.changeTextHandler }
-        value = { this.state.inputText }
-        style = { inputStyle }
-      />
+        <input
+          type = "text"
+          onChange = { this.changeTextHandler }
+          value = { this.state.inputText }
+          style = { inputStyle }
+        />
 
-      <ValidationComponent length = { this.state.inputText.length } />
+        <ValidationComponent length = { this.state.inputText.length } />
+
+        <div className = "CharContainer">
+          {
+            this.state.inputText.split('').map((char, index) => {
+              return <CharComponent char = { char } key = { index }/>
+            })
+          }
+        </div>
       </div>
     );
   }
